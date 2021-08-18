@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.memory.uzblogs.R
 import com.example.memory.uzblogs.adapter.PostAdapter
+import com.example.memory.uzblogs.adapter.PostAdapterListener
 import com.example.memory.uzblogs.adapter.UserAdapterListener
 import com.example.memory.uzblogs.adapter.UsersAdapter
 import com.example.memory.uzblogs.api.ApiService
 import com.example.memory.uzblogs.api.BaseResponse
 import com.example.memory.uzblogs.model.PostModel
 import com.example.memory.uzblogs.model.UserModel
+import com.example.memory.uzblogs.screen.posts.PostInfoActivity
 import com.example.memory.uzblogs.screen.posts.PostsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit.Callback
@@ -73,7 +75,13 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
             ) {
                 swipe.isRefreshing = false
                 post_recycler.layoutManager = LinearLayoutManager(this@MainActivity)
-                post_recycler.adapter = PostAdapter(response?.body()?.data ?: listOf())
+                post_recycler.adapter = PostAdapter(response?.body()?.data ?: listOf(), object : PostAdapterListener{
+                    override fun onClick(item: PostModel) {
+                        val intent = Intent(this@MainActivity, PostInfoActivity::class.java)
+                        intent.putExtra("post_info", item)
+                        startActivity(intent)
+                    }
+                })
             }
         })
     }

@@ -1,5 +1,7 @@
 package com.example.memory.uzblogs.model
 
+import java.io.Serializable
+
 /**
  * @author user
  * @date 16.08.2021
@@ -12,4 +14,4 @@ data class PostModel(
     val image: String,
     val likes: Int,
     val tags: List<String>
-)
+): Serializable

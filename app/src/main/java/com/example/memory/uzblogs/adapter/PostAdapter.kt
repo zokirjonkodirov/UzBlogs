@@ -11,10 +11,15 @@ import kotlinx.android.synthetic.main.post_item_layout.view.*
 import kotlinx.android.synthetic.main.user_item_layout.view.*
 
 /**
- * @author user
+ * @author Zokirjon
  * @date 16.08.2021
  */
-class PostAdapter(val items: List<PostModel>): RecyclerView.Adapter<PostAdapter.ItemHolder>() {
+
+interface PostAdapterListener {
+    fun onClick(item: PostModel)
+}
+
+class PostAdapter(val items: List<PostModel>,val adapterListener: PostAdapterListener): RecyclerView.Adapter<PostAdapter.ItemHolder>() {
     inner class ItemHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
@@ -26,6 +31,9 @@ class PostAdapter(val items: List<PostModel>): RecyclerView.Adapter<PostAdapter.
 
         holder.itemView.tvTitle.text = item.text
         holder.itemView.tvDate.text = item.publishDate
+        holder.itemView.setOnClickListener {
+            adapterListener.onClick(item)
+        }
 
         Glide.with(holder.itemView.context).load(item.image).into(holder.itemView.imgPost)
 

@@ -44,11 +44,6 @@
                     android:orientation="vertical">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/user_recycler"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                    <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/post_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>

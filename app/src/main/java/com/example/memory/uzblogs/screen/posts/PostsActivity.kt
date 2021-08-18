@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.memory.uzblogs.R
 import com.example.memory.uzblogs.adapter.PostAdapter
+import com.example.memory.uzblogs.adapter.PostAdapterListener
 import com.example.memory.uzblogs.api.ApiService
 import com.example.memory.uzblogs.api.BaseResponse
 import com.example.memory.uzblogs.model.PostModel
@@ -46,7 +47,11 @@ class PostsActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener 
             ) {
                 swipe.isRefreshing = false
                 post_recycler.layoutManager = LinearLayoutManager(this@PostsActivity)
-                post_recycler.adapter = PostAdapter (response?.body()?.data ?: listOf())
+                post_recycler.adapter = PostAdapter (response?.body()?.data ?: listOf(), object : PostAdapterListener{
+                    override fun onClick(item: PostModel) {
+
+                    }
+                })
             }
 
             override fun onFailure(t: Throwable?) {
