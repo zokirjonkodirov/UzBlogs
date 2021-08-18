@@ -1,5 +1,6 @@
 package com.example.memory.uzblogs.api
 
+import com.example.memory.uzblogs.model.CommentModel
 import com.example.memory.uzblogs.model.PostModel
 import com.example.memory.uzblogs.model.UserModel
 import retrofit.Call
@@ -26,4 +27,10 @@ interface Api {
     fun getPostsByUser(
         @Path("user_id") id: String
     ): Call<BaseResponse<List<PostModel>>>
+
+    @Headers("app-id:611b3647e0ac7f7327509ee5")
+    @GET("post/{post_id}/comment")
+    fun getComments(
+        @Path("post_id") postId: String
+    ): Call<BaseResponse<List<CommentModel>>>
 }

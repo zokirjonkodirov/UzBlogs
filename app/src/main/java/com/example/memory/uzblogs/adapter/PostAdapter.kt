@@ -36,10 +36,11 @@ class PostAdapter(val items: List<PostModel>,val adapterListener: PostAdapterLis
         }
 
         Glide.with(holder.itemView.context).load(item.image).into(holder.itemView.imgPost)
+        val inm = item
 
     }
 
     override fun getItemCount(): Int {
-        return items.size //count() can be used here
+        return items.count() //count() can be used here
     }
 }
