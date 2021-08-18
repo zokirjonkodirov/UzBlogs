@@ -2,6 +2,7 @@ package com.example.memory.uzblogs.screen.posts
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -23,8 +24,10 @@ class PostInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_info)
+        shimmerFrame.startShimmer()
 
         loadPostInfo()
+
         btnBack.setOnClickListener {
             finish()
         }
@@ -45,6 +48,9 @@ class PostInfoActivity : AppCompatActivity() {
                 if (response == null || response.isSuccess == false) {
                     Toast.makeText(this@PostInfoActivity, "Error Loading Comments", Toast.LENGTH_SHORT).show()
                 } else {
+                    shimmerFrame.startShimmer()
+                    shimmerFrame.visibility = View.GONE
+                    recyclerView.visibility = View.VISIBLE
                     recyclerView.layoutManager = LinearLayoutManager(this@PostInfoActivity)
                     recyclerView.adapter = CommentAdapter(response?.body()?.data ?: listOf())
                 }
