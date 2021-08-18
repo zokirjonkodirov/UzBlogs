@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screen.MainActivity">
+    android:background="@color/colorAccent"
+    tools:context=".screen.posts.PostsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,13 +19,14 @@
             android:background="@color/white">
 
             <TextView
+                android:id="@+id/tvToolbarName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="UzBlogs"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@color/white"/>
+                android:textColor="@color/black"/>
         </FrameLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

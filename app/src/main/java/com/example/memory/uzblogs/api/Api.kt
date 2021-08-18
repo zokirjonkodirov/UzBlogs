@@ -5,6 +5,7 @@ import com.example.memory.uzblogs.model.UserModel
 import retrofit.Call
 import retrofit.http.GET
 import retrofit.http.Headers
+import retrofit.http.Path
 
 /**
  * @author user
@@ -19,4 +20,10 @@ interface Api {
     @Headers("app-id:611b3647e0ac7f7327509ee5")
     @GET("post")
     fun getPosts(): Call<BaseResponse<List<PostModel>>>
+
+    @Headers("app-id:611b3647e0ac7f7327509ee5")
+    @GET("user/{user_id}/post")
+    fun getPostsByUser(
+        @Path("user_id") id: String
+    ): Call<BaseResponse<List<PostModel>>>
 }

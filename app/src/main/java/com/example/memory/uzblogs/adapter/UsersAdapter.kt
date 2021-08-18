@@ -10,10 +10,15 @@ import com.example.memory.uzblogs.model.UserModel
 import kotlinx.android.synthetic.main.user_item_layout.view.*
 
 /**
- * @author user
+ * @author Zokirjon
  * @date 16.08.2021
  */
-class UsersAdapter(val items: List<UserModel>): RecyclerView.Adapter<UsersAdapter.ItemHolder>() {
+
+interface UserAdapterListener {
+    fun onClick(item: UserModel)
+}
+
+class UsersAdapter(val items: List<UserModel>, val adapterListener: UserAdapterListener): RecyclerView.Adapter<UsersAdapter.ItemHolder>() {
     inner class ItemHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     }
@@ -25,6 +30,10 @@ class UsersAdapter(val items: List<UserModel>): RecyclerView.Adapter<UsersAdapte
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         val item = items[position]
         holder.itemView.tvName.text = item.firstName
+
+        holder.itemView.setOnClickListener {
+            adapterListener.onClick(item)
+        }
 
         Glide.with(holder.itemView.context).load(item.picture).into(holder.itemView.imageUser)
 
