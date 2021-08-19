@@ -19,7 +19,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -54,4 +54,5 @@ dependencies {
 
     //shimmer effect
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
 }

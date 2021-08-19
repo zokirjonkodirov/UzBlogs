@@ -24,7 +24,7 @@
                 android:text="UzBlogs"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@color/white"/>
+                android:textColor="@color/colorPrimaryDark"/>
         </FrameLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
